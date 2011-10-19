@@ -2,11 +2,11 @@
 # Please note that the preprocessing might take a long time. 
 # YOU HAVE TO SPECIFY THE CHIPTYPE.)
 # INPUT AFFY microarray[...].cel OUTPUT normalized.tsv, phenodata.tsv 
-# PARAMETER chiptype [empty, human, mouse, rat] DEFAULT empty (Chiptype)
-
+# PARAMETER chiptype [empty, human-1.0-ST, human-1.1-ST, mouse-1.0-ST, mouse-1.1-ST, rat-1.0-ST, rat-1.1-ST] DEFAULT empty (Chiptype)
 
 # Affymetrix normalization
-# JTT 3.2.2009
+# JTT, 3.2.2009
+# MG. 18.10.2011, added version 1.1 ST arrays
 
 # Initializes analyses
 library(affy)
@@ -17,20 +17,35 @@ if(chiptype=="empty") {
    stop("CHIPSTER-NOTE: You need to specify the chiptype. Please run the tool again.")
 }
 
-if(chiptype=="human") {
+if(chiptype=="human-1.0-ST") {
    dat@cdfName<-"hugene10stv1hsentrezgcdf"
    dat@annotation<-"hugene10stv1hsentrezgcdf"
    chiptype<-"hugene10stv1hsentrezg.db"
 }
-if(chiptype=="mouse") {
+if(chiptype=="human-1.1-ST") {
+	dat@cdfName<-"hugene11stv1hsentrezgcdf"
+	dat@annotation<-"hugene11stv1hsentrezgcdf"
+	chiptype<-"hugene11stv1hsentrezg.db"
+}
+if(chiptype=="mouse-1.0-ST") {
    dat@cdfName<-"mogene10stv1mmentrezgcdf"
    dat@annotation<-"mogene10stv1mmentrezgcdf"
    chiptype<-"mogene10stv1mmentrezg.db"
 }
-if(chiptype=="rat") {
+if(chiptype=="mouse-1.1-ST") {
+	dat@cdfName<-"mogene11stv1mmentrezgcdf"
+	dat@annotation<-"mogene11stv1mmentrezgcdf"
+	chiptype<-"mogene11stv1mmentrezg.db"
+}
+if(chiptype=="rat-1.0-ST") {
    dat@cdfName<-"ragene10stv1rnentrezgcdf"
    dat@annotation<-"ragene10stv1rnentrezgcdf"
    chiptype<-"ragene10stv1rnentrezg.db"
+}
+if(chiptype=="rat-1.1-ST") {
+	dat@cdfName<-"ragene11stv1rnentrezgcdf"
+	dat@annotation<-"ragene11stv1rnentrezgcdf"
+	chiptype<-"ragene11stv1rnentrezg.db"
 }
 
 # Normalizations
